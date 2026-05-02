@@ -1,0 +1,54 @@
+name: Запуск автотестов
+
+on:
+  workflow_dispatch:
+
+jobs:
+  api-tests:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Проверка кода репозитория
+        uses: actions/checkout@v6
+
+      - name: Восстановление образа из кеша
+        id: cache-restore
+        uses: actions/cache/restore@v4
+        with:
+          path: docker-image.tar
+          key: docker-image-for-python-api-testing
+
+      - name: Загрузка образа с Docker Hub (если не было в кеше)
+        if: steps.cache-restore.outputs.cache-hit != 'true'
+        run: |
+          docker pull ilanokhin/python-api-testing:latest
+          docker save ilanokhin/python-api-testing:latest > docker-image.tar
+
+      - name: Сохранение загруженного образа в кеш (если не было в кеше)
+        if: steps.cache-restore.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: docker-image.tar
+          key: docker-image-for-python-api-testing
+
+      - name: Загрузка образа в Docker
+        run: docker load < docker-image.tar
+
+      - name: Запуск API тестов
+        run: |
+          docker run --rm -v ${{ github.workspace }}:/docker/project ilanokhin/python-api-testing:latest \
+            /bin/sh -c "pytest --headless=true"
+
+      - name: Создание Allure отчета
+        if: always()
+        run: |
+          docker run --rm -v ${{ github.workspace }}:/docker/project ilanokhin/python-api-testing:latest \
+            /bin/sh -c "allure generate allure-data -c --single-file"
+
+      - name: Выгрузка Allure отчёта
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: allure-report
+          path: allure-report
+          
