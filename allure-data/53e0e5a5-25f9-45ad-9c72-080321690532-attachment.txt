@@ -1,0 +1,52 @@
+[
+    {
+        "id": 6603,
+        "username": "perezcarolyn",
+        "firstName": "Megan",
+        "lastName": "Cook",
+        "email": "benjamin48@example.org",
+        "password": "UFt7kA7l^^",
+        "phone": "704-324-4475",
+        "userStatus": 0
+    },
+    {
+        "id": 2314,
+        "username": "julie79",
+        "firstName": "Christopher",
+        "lastName": "White",
+        "email": "jclayton@example.com",
+        "password": "$caFOcc%P0",
+        "phone": "(691)869-9559",
+        "userStatus": 1
+    },
+    {
+        "id": 2156,
+        "username": "ybrown",
+        "firstName": "Jodi",
+        "lastName": "Ballard",
+        "email": "shawphilip@example.net",
+        "password": "S14IaUGmE+",
+        "phone": "623-444-6263",
+        "userStatus": 0
+    },
+    {
+        "id": 853,
+        "username": "bryanray",
+        "firstName": "Charles",
+        "lastName": "Morales",
+        "email": "charlesgabrielle@example.com",
+        "password": "!&5Ncrk89@",
+        "phone": "3476369862",
+        "userStatus": 0
+    },
+    {
+        "id": 2558,
+        "username": "bradley11",
+        "firstName": "Kaylee",
+        "lastName": "Ochoa",
+        "email": "loganjose@example.net",
+        "password": "#(n+1M$wgc",
+        "phone": "781-217-0164",
+        "userStatus": 0
+    }
+]

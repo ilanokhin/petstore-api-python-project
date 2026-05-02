@@ -1,0 +1,18 @@
+{
+    "id": 9223372036854775389,
+    "category": {
+        "id": 1,
+        "name": "doggie"
+    },
+    "name": "doggie",
+    ---> "photoUrls": [
+        null
+    ],
+    "tags": [
+        {
+            "id": 1,
+            "name": "doggie"
+        }
+    ],
+    "status": "sold"
+}

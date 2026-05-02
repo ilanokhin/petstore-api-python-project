@@ -1,0 +1,5 @@
+{
+    "code": 200,
+    "type": "unknown",
+    "message": "additionalMetadata: null\nFile uploaded to ./dog1.jpg, 149422 bytes"
+}

@@ -1,0 +1,7 @@
+services:
+  api-tests:
+    image: python-api-testing:latest
+    build: .
+    volumes:
+      - .:/docker/project
+    command: /bin/sh -c "pytest || true; allure generate allure-data -c --single-file"

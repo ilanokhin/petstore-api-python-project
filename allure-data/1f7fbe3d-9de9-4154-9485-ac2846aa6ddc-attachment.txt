@@ -1,0 +1,3 @@
+Ошибка валидации Pydantic #1:
+* Суть ошибки: Field required (missing)
+* Она связана с полем: ('name',)
