@@ -37,7 +37,7 @@ jobs:
       - name: Запуск API тестов
         run: |
           docker run --rm -v ${{ github.workspace }}:/docker/project ilanokhin/python-api-testing:latest \
-            /bin/sh -c "pytest --headless=true"
+            /bin/sh -c "pytest"
 
       - name: Создание Allure отчета
         if: always()
