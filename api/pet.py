@@ -10,6 +10,7 @@ class Pet(BaseApi):
     def upload_pet_image(self, pet_id: int, file_path: str, additional_metadata: str = None,
                          expected_status_code: int = 200) -> Response:
         files = {"file": open(file_path, "rb")}
+
         data = {}
         if additional_metadata is not None:
             data["additionalMetadata"] = additional_metadata
@@ -36,7 +37,7 @@ class Pet(BaseApi):
     def find_pets_by_status(self, status: list, expected_status_code: int = 200) -> Response:
         params = dict(status=status)
         response = self.client.get("/pet/findByStatus", params=params)
-        super().list_response_validation(response, expected_status_code, PetModel, "Питомец", "id")
+        super().list_response_validation(response, expected_status_code, PetModel, "Питомец")
         return response
 
     @allure.step("Получение питомца по ID: GET /pet/{{petId}}")

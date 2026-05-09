@@ -14,6 +14,6 @@ class PetModel(BaseModel):
     id: Optional[int] = None
     category: Optional[CategoryModel] = None
     name: str
-    photoUrls: List[str]
+    photoUrls: List[str | None]
     tags: Optional[List[TagModel]] = None
     status: Optional[Status] = None

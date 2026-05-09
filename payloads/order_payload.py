@@ -6,6 +6,7 @@ class OrderPayload:
     @staticmethod
     def get_one(exclude_keys: tuple = ()) -> dict:
         fake = Faker()
+
         initital_payload = {
             "id": fake.random_int(),
             "petId": fake.random_int(),
@@ -25,6 +26,7 @@ class OrderPayload:
     @staticmethod
     def get_list(number: int = 3, exclude_keys: tuple = ()) -> list[dict]:
         list_of_payloads = []
+
         for i in range(number):
             list_of_payloads.append(OrderPayload.get_one(exclude_keys))
 

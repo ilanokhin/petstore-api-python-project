@@ -15,7 +15,7 @@ class User(BaseApi):
 
     @allure.step("Создание пользователей из списка: POST /user/createWithList")
     def create_users_with_list(self, payload_list: list[dict], expected_status_code: int = 200) -> Response:
-        super().list_payload_validation(payload_list, UserModel, "Пользователь", "username", "@")
+        super().list_payload_validation(payload_list, UserModel, "Пользователь")
         response = self.client.post("/user/createWithList", json=payload_list, headers=API_HEADERS)
         super().standard_response_validation(response, expected_status_code, ApiResponseModel)
         return response

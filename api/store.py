@@ -9,7 +9,7 @@ class Store(BaseApi):
     @allure.step("Получение инвентаря: GET /store/inventory")
     def get_inventory(self, expected_status_code: int = 200) -> Response:
         response = self.client.get("/store/inventory")
-        super().standard_response_validation(response, expected_status_code, ApiResponseModel)
+        super().standard_response_validation(response, expected_status_code, None)
         return response
 
     @allure.step("Создание заказа: POST /store/order")

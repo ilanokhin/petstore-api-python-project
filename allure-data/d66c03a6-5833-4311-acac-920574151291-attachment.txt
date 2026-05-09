@@ -1,3 +1,0 @@
-Ошибка валидации Pydantic #1:
-* Суть ошибки: Input should be a valid string (string_type)
-* Она связана с полем: ('photoUrls', 0)

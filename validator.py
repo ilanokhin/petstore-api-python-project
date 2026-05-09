@@ -8,7 +8,6 @@ class Validator:
     def validate(model_class, payload_or_response: dict) -> tuple:
         errors = []
         text_json = json.dumps(payload_or_response, indent=4, ensure_ascii=False)
-        checked_keys = []
 
         try:
             model_class(**payload_or_response)
@@ -16,12 +15,9 @@ class Validator:
             for i, error in enumerate(e.errors()):
                 loc = tuple(error['loc'])
                 msg = f"{error['msg']} ({error['type']})"
-                pydantic_error = f"Ошибка валидации Pydantic #{i + 1}:\n* Суть ошибки: {msg}\n* Она связана с полем: {loc}"
 
-                for key in payload_or_response.keys():
-                    if loc[0] == key and key not in checked_keys:
-                        text_json = text_json.replace(f'"{key}"', f'---> "{key}"')
-                        checked_keys.append(key)
+                pydantic_error = ("Ошибка валидации Pydantic #{}\n* Она связана с полем: {}\n* Суть ошибки: {}"
+                                  .format(i + 1, loc, msg))
 
                 if pydantic_error:
                     errors.append(pydantic_error)
@@ -31,6 +27,9 @@ class Validator:
     @staticmethod
     def attach_files(errors: tuple, object_name: str = "") -> None:
         on = object_name
+
         if len(errors[0]) > 0:
             allure.attach("\n\n".join(errors[0]), attachment_type=TEXT, name=f"{on}Список ошибок ({len(errors[0])})")
-            allure.attach(errors[1], attachment_type=TEXT, name=f"{on}Указания на ошибки")
+
+            if on:
+                allure.attach(errors[1], attachment_type=TEXT, name=f"{on}Ответ с ошибками")
